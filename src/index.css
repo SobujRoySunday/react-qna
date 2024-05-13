@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+h1 {
+  @apply text-4xl font-normal px-4;
+}
+
+h3 {
+  @apply text-2xl font-semibold px-4 py-2;
+}
+
+p {
+  @apply text-sm px-4 py-2 text-gray-700 tracking-wider leading-relaxed;
+}

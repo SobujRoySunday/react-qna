@@ -49,7 +49,7 @@ const Test = () => {
 
   return (
     <div className="bg-gray-200 flex flex-col justify-center items-center h-screen w-screen">
-      <div className="w-96 flex flex-col gap-5 bg-slate-500 h-fit p-5 rounded">
+      <div className="w-80 flex flex-col gap-5 bg-slate-500 h-fit p-5 rounded">
         {QUESTIONS.map((q, index) => {
           return (
             <div

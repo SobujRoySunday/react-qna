@@ -34,7 +34,7 @@ const Passage = () => {
         >
           Play the article
         </button>
-        <div className="w-96 bg-gray-300 rounded shadow-lg">
+        <div className="w-80 bg-gray-300 rounded shadow-lg">
           <h3>Read the passage</h3>
           <hr />
           <div className="overflow-auto h-[90%]">

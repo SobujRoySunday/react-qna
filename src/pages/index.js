@@ -7,6 +7,7 @@ import VideoInstruction from "./VideoInstruction";
 import Video from "./Video";
 import Result from "./Result";
 import Test from "./Test";
+import Ready from "./Ready";
 
 export {
   Dashboard,
@@ -18,4 +19,5 @@ export {
   Video,
   Result,
   Test,
+  Ready,
 };

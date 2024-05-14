@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-const Dashboard = ({ setData }) => {
+const Dashboard = ({ setData, setBusy }) => {
   const [formData, setFormData] = useState({
     fullName: "",
     age: 0,
@@ -20,10 +20,19 @@ const Dashboard = ({ setData }) => {
     });
   };
 
-  const submitForm = (e) => {
-    e.preventDefault();
-    setData({ userData: formData });
-  };
+  // const submitForm = (e) => {
+  //   e.preventDefault();
+  //   setData((prevData) => ({ ...prevData, userData: formData }));
+  // };
+
+  useEffect(() => {
+    if (formData.fullName === "" || formData.age === 0 || formData.med === "") {
+      setBusy(true);
+    } else {
+      setBusy(false);
+    }
+    setData((prevData) => ({ ...prevData, userData: formData }));
+  }, [formData]);
 
   return (
     <div className="w-80 max-h-[95%] bg-gray-300 rounded shadow-lg flex flex-col gap-5 overflow-auto">
@@ -179,7 +188,7 @@ const Dashboard = ({ setData }) => {
             </label>
           </div>
           <div className="flex flex-col gap-1">
-            <label htmlFor="grade">Marks in HS:</label>
+            <label htmlFor="grade">Marks in 10+2:</label>
             <select id="grade" name="grade" onChange={handleChange}>
               <option value="AA">above 90</option>
               <option value="A+">80 to 90</option>
@@ -189,14 +198,6 @@ const Dashboard = ({ setData }) => {
               <option value="D">40 to 50</option>
               <option value="F">40 & below</option>
             </select>
-          </div>
-          <div className="flex flex-col gap-1">
-            <button
-              onClick={submitForm}
-              className="bg-blue-500 hover:bg-blue-600 text-white"
-            >
-              Save User
-            </button>
           </div>
         </form>
       </div>

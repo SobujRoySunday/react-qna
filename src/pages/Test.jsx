@@ -2,7 +2,8 @@
 import { useEffect, useState } from "react";
 import { QUESTIONS } from "../conf";
 
-const Test = ({ paper, setData }) => {
+const Test = ({ paper, setData, setBusy }) => {
+  const [enable, setEnable] = useState(false);
   Array.prototype.shuffle = function () {
     for (var i = this.length - 1; i > 0; i--) {
       var j = Math.floor(Math.random() * (i + 1));
@@ -24,23 +25,35 @@ const Test = ({ paper, setData }) => {
   };
   const [selectedValue, setSelectedValue] = useState([]);
   const [time, setTime] = useState([]);
+  const [ans, setAns] = useState([]);
   let questions = QUESTIONS[paper];
 
   const handle = () => {
     let points = 0;
     questions.forEach((question, index) => {
       if (question.answer === selectedValue[index]) {
+        let answers = ans;
+        answers[index] = true;
+        setAns(answers);
         points++;
+      } else {
+        let answers = ans;
+        answers[index] = false;
+        setAns(answers);
       }
     });
     setData((prevData) => {
       const oldTest = prevData.test;
       const newData = {
         ...prevData,
-        test: { ...oldTest, [paper]: { score: points, timeStamps: time } },
+        test: {
+          ...oldTest,
+          [paper]: { score: points, timeStamps: time, isCorrect: ans },
+        },
       };
       return newData;
     });
+    setEnable(true);
   };
 
   useEffect(() => {
@@ -52,6 +65,10 @@ const Test = ({ paper, setData }) => {
     });
     setSelectedValue(arr);
   }, [questions]);
+
+  useEffect(() => {
+    setBusy(!enable);
+  }, [enable]);
 
   return (
     <div className="w-80 flex flex-col gap-5 bg-slate-300 h-fit p-5 rounded overflow-auto my-5 max-h-[95%]">

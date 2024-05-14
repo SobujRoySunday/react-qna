@@ -13,3 +13,16 @@ h3 {
 p {
   @apply text-sm px-4 py-2 text-gray-700 tracking-wider leading-relaxed;
 }
+
+button {
+  @apply px-5 py-2 rounded-lg;
+}
+
+input,
+select {
+  @apply p-2 rounded;
+}
+
+label {
+  @apply text-sm text-gray-800;
+}

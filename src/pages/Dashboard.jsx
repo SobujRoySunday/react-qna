@@ -35,7 +35,7 @@ const Dashboard = ({ setData, setBusy }) => {
   }, [formData]);
 
   return (
-    <div className="w-80 max-h-[95%] bg-gray-300 rounded shadow-lg flex flex-col gap-5 overflow-auto">
+    <div className="w-80 max-h-[95%] bg-gray-300 rounded shadow-lg flex flex-col gap-5 overflow-auto lg:w-[60%]">
       <div>
         <h3>SAM Instructions</h3>
         <hr />

@@ -71,7 +71,7 @@ const Test = ({ paper, setData, setBusy }) => {
   }, [enable]);
 
   return (
-    <div className="w-80 flex flex-col gap-5 bg-slate-300 h-fit p-5 rounded overflow-auto my-5 max-h-[95%]">
+    <div className="w-80 flex flex-col gap-5 bg-slate-300 h-fit p-5 rounded overflow-auto my-5 max-h-[95%] lg:w-[60%] lg:min-h-[60%]">
       {questions.map((q, index) => {
         return (
           <div

@@ -8,6 +8,7 @@ import {
   Test,
   Video,
 } from "./pages";
+import { Counter } from "./components";
 
 const App = () => {
   function downloadObjectAsJson(obj, fileName = "data.json") {
@@ -53,6 +54,7 @@ const App = () => {
       let state = delay / 1000;
       document.getElementById("container").classList.remove("hidden");
       document.getElementById("container").classList.add("flex");
+      setBusy(true);
       const dom = document.getElementById("counter");
       dom.innerText = state;
 
@@ -72,6 +74,7 @@ const App = () => {
         }, 1000); // Execute the function 1 second after the beep starts
         document.getElementById("container").classList.add("hidden");
         document.getElementById("container").classList.remove("flex");
+        setBusy(false);
       }, delay);
     };
   }
@@ -173,26 +176,24 @@ const App = () => {
       pageJSX.current = <Result data={data} download={downloadObjectAsJson} />;
       setData((prevData) => ({
         ...prevData,
-        resultTime: Date.now(),
+        endTime: Date.now(),
       }));
     }
   }, [pageState]);
 
   return (
     <div className="w-screen h-screen bg-slate-200 flex justify-center items-center p-5">
-      <div
-        id="container"
-        className="w-screen h-screen bg-gray-950 opacity-70 text-white hidden justify-center items-center absolute top-0 left-0"
-      >
-        <h1 id="counter"></h1>
-      </div>
+      {/* Counter */}
+      <Counter />
+
+      {/* Sequence Page */}
       {pageJSX.current}
+
+      {/* Last Page */}
       {pageState === 10 ? null : (
         <button
           onClick={handleOperation}
-          className={`${
-            busy ? "bg-green-300" : "bg-green-500 hover:bg-green-600"
-          }  text-white absolute bottom-4 right-4`}
+          className="bg-green-500 hover:bg-green-600 disabled:bg-green-300 text-white absolute bottom-4 right-4"
           disabled={busy}
         >
           Next &gt;&gt;

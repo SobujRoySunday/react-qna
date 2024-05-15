@@ -11,7 +11,7 @@ h3 {
 }
 
 p {
-  @apply text-sm px-4 py-2 text-gray-700 tracking-wider leading-relaxed;
+  @apply text-lg px-4 py-2 text-gray-700 tracking-widest leading-loose;
 }
 
 button {

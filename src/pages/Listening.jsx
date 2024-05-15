@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useState, useEffect } from "react";
 import SOUND from "../assets/sound.mp3";
 
@@ -15,9 +16,9 @@ const Listening = ({ setBusy }) => {
     });
   }, []);
   return isSoundPlaying ? (
-    <div>Listen Carefully</div>
+    <h3>Listen Carefully...</h3>
   ) : (
-    <div>Now you may proceed to the next round</div>
+    <h3>Now you may proceed to the next round :)</h3>
   );
 };
 

@@ -1,7 +1,27 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 
-const Result = ({ data, download }) => {
+function downloadObjectAsJson(obj, fileName = "data.json") {
+  // Convert object to JSON string
+  const jsonString = JSON.stringify(obj, null, 2);
+
+  // Create a blob from the JSON string
+  const blob = new Blob([jsonString], { type: "application/json" });
+
+  // Create a link element
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = fileName;
+
+  // Append the link to the document body and click it to start the download
+  document.body.appendChild(link);
+  link.click();
+
+  // Remove the link element from the document
+  document.body.removeChild(link);
+}
+
+const Result = ({ data }) => {
   const [result, setResult] = useState({});
   function adjustTimestamps(data) {
     const { startTime, ...rest } = data;
@@ -48,7 +68,7 @@ const Result = ({ data, download }) => {
       Your result is ready here:
       <button
         onClick={() => {
-          download(result);
+          downloadObjectAsJson(result, `${data.userData.fullName}.json`);
         }}
         className="bg-blue-500 hover:bg-blue-600"
       >

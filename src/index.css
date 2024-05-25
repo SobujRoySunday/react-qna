@@ -10,14 +10,6 @@ h3 {
   @apply text-2xl font-semibold px-4 py-2;
 }
 
-p {
-  @apply text-lg px-4 py-2 text-gray-700 tracking-widest leading-loose;
-}
-
-button {
-  @apply px-5 py-2 rounded-lg transition-colors duration-300;
-}
-
 input,
 select {
   @apply p-2 rounded;
